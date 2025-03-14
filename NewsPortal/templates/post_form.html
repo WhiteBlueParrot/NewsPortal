@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_tags %}
+{% load custom_filters %}
+
+{% block content %}
+    <h2>{% if object %}Редактировать{% else %}Создать{% endif %} пост</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <a href="{% url 'news_list' %}">Отмена</a>
+{% endblock %}
