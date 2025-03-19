@@ -5,6 +5,7 @@ from django_filters.views import FilterView
 from .filters import PostFilter
 from .forms import PostForm
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class PostsList(ListView):
@@ -63,7 +64,7 @@ class ArticleCreateView(CreateView):
 
 
 # Редактирование поста (post_type уже задан, менять не надо)
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'post_form.html'
