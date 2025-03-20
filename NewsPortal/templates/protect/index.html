@@ -8,4 +8,7 @@
     {% csrf_token %}
     <button type="submit">Выйти</button>
 </form>
+{% if is_not_author %}
+<button> <a href="sign/become_author/"> Стать автором</a> </button>
+{% endif %}
 {% endblock content %}
