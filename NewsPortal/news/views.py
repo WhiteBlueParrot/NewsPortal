@@ -5,7 +5,7 @@ from django_filters.views import FilterView
 from .filters import PostFilter
 from .forms import PostForm
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
 class PostsList(ListView):
@@ -42,7 +42,8 @@ class PostsSearch(FilterView):
 
 
 # Создание новости (автоматически проставляем post_type = 'NW')
-class NewsCreateView(CreateView):
+class NewsCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post',)
     model = Post
     form_class = PostForm
     template_name = 'post_form.html'
@@ -53,7 +54,8 @@ class NewsCreateView(CreateView):
 
 
 # Создание статьи (автоматически проставляем post_type = 'AR')
-class ArticleCreateView(CreateView):
+class ArticleCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post',)
     model = Post
     form_class = PostForm
     template_name = 'post_form.html'
@@ -64,14 +66,16 @@ class ArticleCreateView(CreateView):
 
 
 # Редактирование поста (post_type уже задан, менять не надо)
-class PostUpdateView(LoginRequiredMixin, UpdateView):
+class PostUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     model = Post
     form_class = PostForm
     template_name = 'post_form.html'
 
 
 # Удаление поста
-class PostDeleteView(DeleteView):
+class PostDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post',)
     model = Post
     template_name = 'post_confirm_delete.html'
     success_url = reverse_lazy('news_list')  # Перенаправление после удаления
