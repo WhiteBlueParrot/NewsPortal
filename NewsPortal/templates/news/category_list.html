@@ -8,6 +8,9 @@ Posts
 {% endblock title %}
 
 {% block content %}
+    {% if is_not_subscriber %}
+        <p class="text-center"><a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a></p>
+    {% endif %}
     <h1>Все новости</h1>
     <h3>Кол-во новостей: {{ posts|length }}</h3>
 
@@ -17,7 +20,7 @@ Posts
    </form>
 
     <hr>
-    {% if posts %}
+    {% if category_news_list %}
         <table>
         <tr>
             <td>Заголовок</td>
@@ -26,7 +29,7 @@ Posts
             <td>Категории</td>
         </tr>
 
-        {% for post in posts|dictsortreversed:"created_at" %}
+        {% for post in category_news_list %}
         <tr>
             <td>{{ post.title|censor }}</td>
             <td>{{ post.created_at|date:'d.m.Y' }}</td>
