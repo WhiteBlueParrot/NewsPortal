@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'django_apscheduler',
 ]
 
 SITE_ID = 1
@@ -150,10 +151,10 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_FORMS = {'signup': 'sign.models.CommonSignupForm'}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -166,3 +167,8 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 DEFAULT_TO_EMAIL = os.getenv('DEFAULT_TO_EMAIL')
 
 SITE_URL = 'http://127.0.0.1:8000'
+
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+
+APSCHEDULER_RUN_NOW_TIMEOUT = 25

@@ -9,7 +9,7 @@ from .models import PostCategory
 print("✅ Signals module loaded!")
 
 
-def send_notification(preview, pk, title, subscribers):
+def send_notifications(preview, pk, title, subscribers):
     html_content = render_to_string(
         'post_created_email.html',
         {
@@ -31,19 +31,19 @@ def send_notification(preview, pk, title, subscribers):
 @receiver(m2m_changed, sender=PostCategory)
 def notify_about_new_post(sender, instance, **kwargs):
     if kwargs['action'] == 'post_add':
-        categories = instance.category.all()
+        categories = instance.categories.all()
         subscribers_emails = []
 
         for category in categories:
             subscribers = category.subscribers.all()
             subscribers_emails += [subscriber.email for subscriber in subscribers]
 
-        send_notification(instance.preview(), instance.pk, instance.title, subscribers_emails)
+        send_notifications(instance.preview(), instance.pk, instance.title, subscribers_emails)
 
-    print(f"New post: {instance.title}")
-    print(f"Subscribers: {subscribers_emails}")
-
-    if subscribers_emails:
-        send_notification(instance.preview(), instance.pk, instance.title, subscribers_emails)
-    else:
-        print("No subscribers found. Email not sent.")
+    # print(f"New post: {instance.title}")
+    # print(f"Subscribers: {subscribers_emails}")
+    #
+    # if subscribers_emails:
+    #     send_notifications(instance.preview(), instance.pk, instance.title, subscribers_emails)
+    # else:
+    #     print("No subscribers found. Email not sent.")

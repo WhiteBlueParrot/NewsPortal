@@ -6,6 +6,8 @@ from .views import (
 
 )
 
+app_name = 'news'
+
 urlpatterns = [
     path('', PostsList.as_view(), name='news_list'),
     path('<int:pk>/', PostDetail.as_view(), name='post_detail'),  # Ensure this is named 'post_detail'

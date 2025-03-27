@@ -5,11 +5,21 @@
 {% block content %}
     <h2>{% if object %}Редактировать{% else %}Создать{% endif %} пост</h2>
 
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+        {% if 'error' in message.tags %}
+            {{ message }}
+        {% endif %}
+    {% endfor %}
+    </ul>
+    {% endif %}
+
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Сохранить</button>
     </form>
 
-    <a href="{% url 'news_list' %}">Отмена</a>
+    <a href="{% url 'news:news_list' %}">Отмена</a>
 {% endblock %}

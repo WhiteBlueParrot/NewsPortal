@@ -46,7 +46,8 @@ class Post(models.Model):
     categories = models.ManyToManyField(Category, through='PostCategory')
 
     def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk': self.pk})
+        # return reverse('post_detail', kwargs={'pk': self.pk})
+        return f'/news/{self.pk}'
 
     def preview(self):
         return self.text[:124] + '...'

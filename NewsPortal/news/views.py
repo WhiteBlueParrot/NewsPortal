@@ -5,9 +5,11 @@ from django_filters.views import FilterView
 from .filters import PostFilter
 from .forms import PostForm
 from django.urls import reverse_lazy
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.timezone import now
 
 
 class PostsList(LoginRequiredMixin, ListView):
@@ -47,7 +49,15 @@ class NewsCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'post_form.html'
 
     def form_valid(self, form):
-        form.instance.post_type = Post.NEWS  # Устанавливаем "новость"
+        today_posts = Post.objects.filter(author=self.request.user.author, created_at__date=now().date()).count()
+
+        if today_posts >= 3:
+            messages.error(self.request, "Вы не можете публиковать более 3-х новостей в сутки!")
+            # Возвращаем пользователя на предыдущую страницу
+            return redirect(self.request.META.get('HTTP_REFERER'))
+
+        form.instance.post_type = Post.NEWS
+        form.instance.author = self.request.user.author
         return super().form_valid(form)
 
 
