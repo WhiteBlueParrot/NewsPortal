@@ -5,12 +5,13 @@ from .views import (
     CategoryListView, subscribe
 
 )
+from django.views.decorators.cache import cache_page
 
 app_name = 'news'
 
 urlpatterns = [
-    path('', PostsList.as_view(), name='news_list'),
-    path('<int:pk>/', PostDetail.as_view(), name='post_detail'),  # Ensure this is named 'post_detail'
+    path('', cache_page(60)(PostsList.as_view()), name='news_list'),
+    path('<int:pk>/', cache_page(60*5)(PostDetail.as_view()), name='post_detail'),  # Ensure this is named 'post_detail'
     path('search/', PostsSearch.as_view(), name='post_search'),
 
     path('news/create/', NewsCreateView.as_view(), name='news_create'),

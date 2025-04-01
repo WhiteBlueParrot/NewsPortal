@@ -1,8 +1,11 @@
 {% extends 'flatpages/default.html' %}
 
 {% load custom_tags %}
+{% load cache %}
 {% block content %}
+    {% cache 300 search_header %}
     <h2>Поиск новостей</h2>
+    {% endcache %}
 
     <!-- Форма фильтрации -->
     <form method="get">
@@ -10,6 +13,7 @@
         <button type="submit">Искать</button>
     </form>
 
+    {% cache 300 search_results %}
     <h3>Результаты поиска:</h3>
     <ul>
         {% for post in posts %}
@@ -18,7 +22,9 @@
             <p>Новостей не найдено.</p>
         {% endfor %}
     </ul>
+    {% endcache %}
 
+   {% cache 300 search_pagination %}
    {% if page_obj.has_previous %}
        {# Для каждой ссылки пагинации указываем обработку через новый тег #}
        <a href="?{% url_replace page=1 %}">1</a>
@@ -37,4 +43,5 @@
            <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
        {% endif %}
    {% endif %}
+   {% endcache %}
 {% endblock content %}

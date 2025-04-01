@@ -1,5 +1,6 @@
 {% extends 'flatpages/default.html' %}
 {% load custom_tags %}
+{% load cache %}
 
 {% block content %}
     <h2>Удалить "{{ object.title }}"?</h2>
@@ -8,6 +9,7 @@
         {% csrf_token %}
         <button type="submit">Удалить</button>
     </form>
-
-    <a href="{% url 'news_list' %}">Отмена</a>
+    {% cache 300 cancel_section %}
+        <a href="{% url 'news_list' %}">Отмена</a>
+    {% endcache %}
 {% endblock %}

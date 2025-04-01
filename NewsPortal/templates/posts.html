@@ -2,14 +2,17 @@
 
 {% load custom_filters %}
 {% load custom_tags %}
+{% load cache %}
 
 {% block title %}
 Posts
 {% endblock title %}
 
 {% block content %}
+    {% cache 300 posts_header %}
     <h1>Все новости</h1>
     <h3>Кол-во новостей: {{ posts|length }}</h3>
+    {% endcache %}
 
     <form action="" method="get">
        {{ filterset.form.as_p }}
@@ -18,6 +21,7 @@ Posts
 
     <hr>
     {% if posts %}
+        {% cache 300 posts_table %}
         <table>
         <tr>
             <td>Заголовок</td>
@@ -39,6 +43,7 @@ Posts
         </tr>
         {% endfor %}
         </table>
+        {% endcache %}
     {% else %}
         <h2>Новостей нет!</h2>
     {% endif %}
