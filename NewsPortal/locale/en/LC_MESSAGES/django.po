@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-19 19:36+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\news\views.py:68
+msgid "Вы не можете публиковать более 3-х новостей в сутки!"
+msgstr "You can't publish more than 3 posts per day!"
+
+#: .\news\views.py:128
+msgid "Вы успешно подписались на категорию"
+msgstr ""
+
+#: .\news\views.py:134
+msgid "Hello world!"
+msgstr ""
+
+#: .\templates\daily_post.html:6
+msgid "Уведомление"
+msgstr ""
+
+#: .\templates\daily_post.html:9
+msgid "Здравствуйте! Новые статьи за последнюю неделю:"
+msgstr ""
+
+#: .\templates\index.html:28
+msgid "Check out my new cool translation"
+msgstr ""
+
+#: .\templates\post.html:7
+msgid "Пост"
+msgstr ""

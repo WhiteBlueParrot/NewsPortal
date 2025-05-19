@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 import logging
+
 logger = logging.getLogger('django')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -66,6 +67,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'NewsPortal.urls'
@@ -128,6 +130,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+
+LANGUAGES = [
+    ('en-us', 'English'),
+    ('ru', 'Русский'),
+]
 
 TIME_ZONE = 'UTC'
 
@@ -302,3 +309,7 @@ LOGGING = {
         }
     }
 }
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]

@@ -1,4 +1,6 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Category
 from django_filters.views import FilterView
@@ -11,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.timezone import now
 from django.core.cache import cache
+from django.utils.translation import gettext as _
 
 
 class PostsList(LoginRequiredMixin, ListView):
@@ -62,7 +65,7 @@ class NewsCreateView(PermissionRequiredMixin, CreateView):
         today_posts = Post.objects.filter(author=self.request.user.author, created_at__date=now().date()).count()
 
         if today_posts >= 3:
-            messages.error(self.request, "Вы не можете публиковать более 3-х новостей в сутки!")
+            messages.error(self.request, _("Вы не можете публиковать более 3-х новостей в сутки!"))
             # Возвращаем пользователя на предыдущую страницу
             return redirect(self.request.META.get('HTTP_REFERER'))
 
@@ -122,5 +125,15 @@ def subscribe(request, pk):
     category = Category.objects.get(id=pk)
     category.subscribers.add(user)
 
-    message = "Вы успешно подписались на категорию"
+    message = _("Вы успешно подписались на категорию")
     return render(request, 'news/subscribe.html', {'category': category, 'message': message})
+
+
+class Index(View):
+    def get(self, request):
+        string = _('Hello world!')
+        # return HttpResponse(string)
+        context = {
+            'string': string,
+        }
+        return HttpResponse(render(request, 'index.html', context))

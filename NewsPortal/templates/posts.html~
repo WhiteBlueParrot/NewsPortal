@@ -2,18 +2,17 @@
 
 {% load custom_filters %}
 {% load custom_tags %}
-{% load i18n %}
+{% load cache %}
 
 {% block title %}
 Posts
 {% endblock title %}
 
 {% block content %}
-    {% if is_not_subscriber %}
-        <p class="text-center"><a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a></p>
-    {% endif %}
+    {% cache 300 posts_header %}
     <h1>{% trans Все новости %}</h1>
-    <h3>{% trans Кол-во новостей: %}  {{ posts|length }}</h3>
+    <h3>{% trans Кол-во новостей: %} {{ posts|length }}</h3>
+    {% endcache %}
 
     <form action="" method="get">
        {{ filterset.form.as_p }}
@@ -21,7 +20,8 @@ Posts
    </form>
 
     <hr>
-    {% if category_news_list %}
+    {% if posts %}
+        {% cache 300 posts_table %}
         <table>
         <tr>
             <td>{% trans Заголовок %}</td>
@@ -30,7 +30,7 @@ Posts
             <td>{% trans Категории %}</td>
         </tr>
 
-        {% for post in category_news_list %}
+        {% for post in posts|dictsortreversed:"created_at" %}
         <tr>
             <td>{{ post.title|censor }}</td>
             <td>{{ post.created_at|date:'d.m.Y' }}</td>
@@ -43,6 +43,7 @@ Posts
         </tr>
         {% endfor %}
         </table>
+        {% endcache %}
     {% else %}
         <h2>{% trans Новостей нет! %}</h2>
     {% endif %}

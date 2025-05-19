@@ -1,7 +1,6 @@
 {% extends 'flatpages/default.html' %}
 
 {% load custom_filters %}
-{% load i18n %}
 
 {% block title %}
 {% trans 'Пост' %}

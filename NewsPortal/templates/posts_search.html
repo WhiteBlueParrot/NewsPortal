@@ -2,6 +2,7 @@
 
 {% load custom_tags %}
 {% load cache %}
+{% load i18n %}
 {% block content %}
     {% cache 300 search_header %}
     <h2>Поиск новостей</h2>
@@ -10,16 +11,16 @@
     <!-- Форма фильтрации -->
     <form method="get">
         {{ filter.form.as_p }}
-        <button type="submit">Искать</button>
+        <button type="submit">{% trans Искать %}</button>
     </form>
 
     {% cache 300 search_results %}
-    <h3>Результаты поиска:</h3>
+    <h3>{% trans Результаты поиска: %}</h3>
     <ul>
         {% for post in posts %}
             <li><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></li>
         {% empty %}
-            <p>Новостей не найдено.</p>
+            <p>{% trans Новостей не найдено. %}</p>
         {% endfor %}
     </ul>
     {% endcache %}

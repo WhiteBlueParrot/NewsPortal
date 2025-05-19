@@ -1,9 +1,10 @@
 {% extends 'flatpages/default.html' %}
 {% load custom_tags %}
 {% load custom_filters %}
+{% load i18n %}
 
 {% block content %}
-    <h2>{% if object %}Редактировать{% else %}Создать{% endif %} пост</h2>
+    <h2>{% if object %}{% trans Редактировать %}{% else %}{% trans Создать}{% endif %} {% trans пост %}</h2>
 
     {% if messages %}
     <ul class="messages">
@@ -18,8 +19,8 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Сохранить</button>
+        <button type="submit">{% trans Сохранить %}</button>
     </form>
 
-    <a href="{% url 'news:news_list' %}">Отмена</a>
+    <a href="{% url 'news:news_list' %}">{% trans Отмена %}</a>
 {% endblock %}
