@@ -4,13 +4,13 @@
 {% load i18n %}
 
 {% block content %}
-    <h2>{% trans Удалить %} "{{ object.title }}"?</h2>
+    <h2>{% trans 'Удалить' %} "{{ object.title }}"?</h2>
 
     <form method="post">
         {% csrf_token %}
-        <button type="submit">{% trans Удалить %}</button>
+        <button type="submit">{% trans 'Удалить' %}</button>
     </form>
     {% cache 300 cancel_section %}
-        <a href="{% url 'news_list' %}">{% trans Отмена %}</a>
+        <a href="{% url 'news_list' %}">{% trans 'Отмена' %}</a>
     {% endcache %}
 {% endblock %}

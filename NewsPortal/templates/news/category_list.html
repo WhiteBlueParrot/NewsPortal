@@ -12,8 +12,8 @@ Posts
     {% if is_not_subscriber %}
         <p class="text-center"><a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a></p>
     {% endif %}
-    <h1>{% trans Все новости %}</h1>
-    <h3>{% trans Кол-во новостей: %}  {{ posts|length }}</h3>
+    <h1>{% trans 'Все новости' %}</h1>
+    <h3>{% trans 'Кол-во новостей:' %}  {{ posts|length }}</h3>
 
     <form action="" method="get">
        {{ filterset.form.as_p }}
@@ -24,10 +24,10 @@ Posts
     {% if category_news_list %}
         <table>
         <tr>
-            <td>{% trans Заголовок %}</td>
-            <td>{% trans Дата создания %}</td>
-            <td>{% trans Текст %}</td>
-            <td>{% trans Категории %}</td>
+            <td>{% trans 'Заголовок' %}</td>
+            <td>{% trans 'Дата создания' %}</td>
+            <td>{% trans 'Текст' %}</td>
+            <td>{% trans 'Категории' %}</td>
         </tr>
 
         {% for post in category_news_list %}
@@ -44,7 +44,7 @@ Posts
         {% endfor %}
         </table>
     {% else %}
-        <h2>{% trans Новостей нет! %}</h2>
+        <h2>{% trans 'Новостей нет!' %}</h2>
     {% endif %}
 
     {# Добавляем пагинацию на страницу #}

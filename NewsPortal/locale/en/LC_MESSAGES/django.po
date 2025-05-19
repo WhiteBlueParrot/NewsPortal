@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-19 19:36+0300\n"
+"POT-Creation-Date: 2025-05-19 21:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,24 +23,129 @@ msgstr "You can't publish more than 3 posts per day!"
 
 #: .\news\views.py:128
 msgid "Вы успешно подписались на категорию"
-msgstr ""
+msgstr "You have successfully subscribed to the category"
 
 #: .\news\views.py:134
 msgid "Hello world!"
-msgstr ""
+msgstr "Hello world!"
 
-#: .\templates\daily_post.html:6
+#: .\templates\daily_post.html:6 .\templates\post_created_email.html:6
 msgid "Уведомление"
-msgstr ""
+msgstr "Notification"
 
 #: .\templates\daily_post.html:9
 msgid "Здравствуйте! Новые статьи за последнюю неделю:"
-msgstr ""
+msgstr "Welcome! New posts for last week:"
 
 #: .\templates\index.html:28
 msgid "Check out my new cool translation"
-msgstr ""
+msgstr "Check out my new cool translation"
+
+#: .\templates\news\category_list.html:15 .\templates\posts.html:14
+msgid "Все новости"
+msgstr "All posts"
+
+#: .\templates\news\category_list.html:16 .\templates\posts.html:15
+msgid "Кол-во новостей:"
+msgstr "Number of posts: "
+
+#: .\templates\news\category_list.html:27 .\templates\posts.html:28
+msgid "Заголовок"
+msgstr "Title"
+
+#: .\templates\news\category_list.html:28 .\templates\posts.html:29
+msgid "Дата создания"
+msgstr "Created at"
+
+#: .\templates\news\category_list.html:29 .\templates\posts.html:30
+msgid "Текст"
+msgstr "Text"
+
+#: .\templates\news\category_list.html:30 .\templates\posts.html:31
+msgid "Категории"
+msgstr "Categories"
+
+#: .\templates\news\category_list.html:47 .\templates\posts.html:49
+msgid "Новостей нет!"
+msgstr "No posts!"
 
 #: .\templates\post.html:7
 msgid "Пост"
-msgstr ""
+msgstr "Post"
+
+#: .\templates\post_confirm_delete.html:7
+#: .\templates\post_confirm_delete.html:11
+msgid "Удалить"
+msgstr "Delete"
+
+#: .\templates\post_confirm_delete.html:14 .\templates\post_form.html:25
+msgid "Отмена"
+msgstr "Cancel"
+
+#: .\templates\post_created_email.html:9
+msgid "Здравствуйте! Новая"
+msgstr "Welcome! New "
+
+#: .\templates\post_created_email.html:9
+msgid "статья"
+msgstr "post"
+
+#: .\templates\post_created_email.html:9
+msgid "в вашем разделе!"
+msgstr "in your section!"
+
+#: .\templates\post_form.html:7
+msgid "Редактировать"
+msgstr "Edit"
+
+#: .\templates\post_form.html:7
+msgid "Создать"
+msgstr "Create"
+
+#: .\templates\post_form.html:7
+msgid "пост"
+msgstr "post"
+
+#: .\templates\post_form.html:22
+msgid "Сохранить"
+msgstr "Save"
+
+#: .\templates\posts_search.html:8
+msgid "Поиск новостей"
+msgstr "Posts search"
+
+#: .\templates\posts_search.html:14
+msgid "Искать"
+msgstr "Find"
+
+#: .\templates\posts_search.html:18
+msgid "Результаты поиска: "
+msgstr "Search results: "
+
+#: .\templates\posts_search.html:23
+msgid "Новостей не найдено."
+msgstr "No posts found."
+
+#: .\templates\protect\index.html:6
+msgid "Страница авторизованного пользователя"
+msgstr "Authorized user page"
+
+#: .\templates\protect\index.html:7
+msgid "Здесь может содержаться персональная информация для каждого пользователя"
+msgstr "Personal information for each user can be located here"
+
+#: .\templates\protect\index.html:16
+msgid "Стать автором"
+msgstr "Become author"
+
+#: .\templates\weekly_newsletter.html:6
+msgid "Еженедельная рассылка"
+msgstr "Weekly newsletter"
+
+#: .\templates\weekly_newsletter.html:9
+msgid "Здравствуйте,"
+msgstr "Welcome,"
+
+#: .\templates\weekly_newsletter.html:9
+msgid "Новые статьи в ваших подписках: "
+msgstr "New posts in your subscriptions: "

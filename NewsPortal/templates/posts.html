@@ -11,8 +11,8 @@ Posts
 
 {% block content %}
     {% cache 300 posts_header %}
-    <h1>{% trans Все новости %}</h1>
-    <h3>{% trans Кол-во новостей: %} {{ posts|length }}</h3>
+    <h1>{% trans 'Все новости' %}</h1>
+    <h3>{% trans 'Кол-во новостей:' %} {{ posts|length }}</h3>
     {% endcache %}
 
     <form action="" method="get">
@@ -25,10 +25,10 @@ Posts
         {% cache 300 posts_table %}
         <table>
         <tr>
-            <td>{% trans Заголовок %}</td>
-            <td>{% trans Дата создания %}</td>
-            <td>{% trans Текст %}</td>
-            <td>{% trans Категории %}</td>
+            <td>{% trans 'Заголовок' %}</td>
+            <td>{% trans 'Дата создания' %}</td>
+            <td>{% trans 'Текст' %}</td>
+            <td>{% trans 'Категории' %}</td>
         </tr>
 
         {% for post in posts|dictsortreversed:"created_at" %}
@@ -46,7 +46,7 @@ Posts
         </table>
         {% endcache %}
     {% else %}
-        <h2>{% trans Новостей нет! %}</h2>
+        <h2>{% trans 'Новостей нет!' %}</h2>
     {% endif %}
 
     {# Добавляем пагинацию на страницу #}

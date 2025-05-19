@@ -1,0 +1,28 @@
+TODO: fix posts not showing
+NoReverseMatch at /news/
+Reverse for 'category_list' not found. 'category_list' is not a valid view function or pattern name.
+
+Error during template rendering
+In template C:\Users\dimab\PycharmProjects\NewsPortal\NewsPortal\templates\posts.html, error at line 41
+
+Reverse for 'category_list' not found. 'category_list' is not a valid view function or pattern name.
+31	            <td>{% trans 'Категории' %}</td>
+32	        </tr>
+33
+34	        {% for post in posts|dictsortreversed:"created_at" %}
+35	        <tr>
+36	            <td>{{ post.title|censor }}</td>
+37	            <td>{{ post.created_at|date:'d.m.Y' }}</td>
+38	            <td>{{ post.text|truncatewords:20|censor }}</td>
+39	            <td>
+40	                {% for category in post.categories.all %}
+41	                    <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+42	                {% endfor %}
+43	            </td>
+44	        </tr>
+45	        {% endfor %}
+46	        </table>
+47	        {% endcache %}
+48	    {% else %}
+49	        <h2>{% trans 'Новостей нет!' %}</h2>
+50	    {% endif %}
