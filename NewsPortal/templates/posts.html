@@ -38,7 +38,7 @@ Posts
             <td>{{ post.text|truncatewords:20|censor }}</td>
             <td>
                 {% for category in post.categories.all %}
-                    <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+                    <a href="{% url 'news:category_list' category.id %}">{{ category }}</a>
                 {% endfor %}
             </td>
         </tr>
